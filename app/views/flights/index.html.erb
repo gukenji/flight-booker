@@ -1,0 +1,53 @@
+<div class="search-container">
+  <div class="search">
+    <p>Passagens áereas</p>
+    <div class="search-options">
+      <%= form_tag("/flights", method: :get) do %>
+        <p class="input">ORIGEM <%= select_tag("departure_code", options_for_select(@departure_options))%></p>
+        <p class="input">DESTINO <%= select_tag("arrival_code", options_for_select(@arrival_options))%></p>
+        <p class="input">DATA <%= select_tag("date", options_for_select(@date_options)) %></p>
+        <p class="input">PASSAGEIROS <%= select_tag("num_ticket", options_for_select(1..4))%></p>
+        <div class="busca">
+          <span class="material-symbols-outlined">search</span>
+          <%= submit_tag("Buscar") %>
+        </div>
+      <%end %>
+    </div>
+  </div>
+</div>
+<div class="search-result">
+  <% if @flight_list != nil && @flight_list.exists?  %>
+    <table class="tg">
+      <thead>
+        <tr>
+          <th class="tg-jqod">Partida</th>
+          <th class="tg-jqod">Destino</th>
+          <th class="tg-vzvg">Data</th>
+          <th class="tg-vzvg">Agendar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @flight_list.each do |f|%>
+          <tr>
+            <td class="tg-0pky"><%= Airport.find(f.departure_airport_id).city%></td>
+            <td class="tg-0pky"><%= Airport.find(f.arrival_airport_id).city%></td>
+            <td class="tg-0lax"><%= Flight.flight_date_formatted(f.start_datetime)%></td>
+            <td class="tg-0lax">
+              <%= form_with url: new_booking_path, method: :get do |booking_form| %>
+                <%= booking_form.hidden_field :flight_id, value: f.id%>
+                <%= booking_form.hidden_field :passenger_id, value: 1%>
+                <%= booking_form.hidden_field :num_ticket, value: params[:num_ticket]%>
+                <%= submit_tag("Selecionar")%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="search-result">
+    <p>Desculpe :( <br>
+      Sua pesquisa não retornou resultados.</p>
+  </div>
+<%end %>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FlightBooker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <% if flash[:notice] %>
+      <div class="notification success">
+        <p class="notification-message"><span class="material-icons">check_circle</span>SUCESSO!</p>
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification warning">
+        <p class="notification-message"><span class="material-icons">error</span>ERRO!</p>
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+    <nav class="flex">
+      <div class="flex">
+        <h2><%= link_to 'flightbooker', root_path, class: "nav-logo" %></h2>
+      </div>
+      <div class="flex h-align-end grow">
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

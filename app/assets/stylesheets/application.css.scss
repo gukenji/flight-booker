@@ -1,0 +1,128 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap");
+$warning-color: #9e322d;
+$success-color: #5ba440;
+$logo-font: "Edu VIC WA NT Beginner", cursive;
+$body-font: "Ibarra Real Nova", serif;
+$blue: #3468FC;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: $body-font;
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav-item {
+  text-decoration: none;
+  &:visited{
+    color: black;
+  }
+  &:hover{
+    color: $blue;
+  }
+}
+
+nav {
+  padding: 20px 4%;
+  color: $blue;
+  border-bottom: 1px solid $blue;
+}
+
+
+.nav-logo {
+  font-family: $logo-font;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-size: 20px;
+  color: $blue;
+  &:visited{
+    color: $blue;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.v-center {
+  align-self: center;
+  align-items: center;
+}
+
+.h-align-end {
+  justify-self: flex-end;
+  justify-content: flex-end;
+  justify-items: flex-end;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.notification {
+  display: flex;
+  padding: 15px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  .notification-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 35.1px;
+    font-weight: bold;
+    .material-icons {
+      font-size: 27px;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.warning {
+  background-color: #fff3f7;
+  p {
+    color: $warning-color;
+  }
+}
+
+.success {
+  background: #f1f9f2;
+  p {
+    color: $success-color;
+  }
+}
+
+
+.gap {
+  gap: 30px;
+}
+

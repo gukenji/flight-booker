@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap");
 $body-font: "Ibarra Real Nova", serif;
 $blue: #3468fc;
+$logo-font: "Edu VIC WA NT Beginner", cursive;
 
 .search-container {
   background: $blue;
@@ -25,7 +26,7 @@ $blue: #3468fc;
       display: flex;
       justify-content: center;
       padding: 20px 0;
-      .busca{
+      .busca {
         position: relative;
         display: flex;
         justify-content: center;
@@ -92,13 +93,15 @@ $blue: #3468fc;
   p {
     padding: 5px 0;
   }
+  input {
+    cursor: pointer;
+  }
 }
 
 .tg {
   border-collapse: collapse;
   border-spacing: 0;
   justify-self: center;
-  
 }
 .tg td {
   border-color: black;
@@ -143,4 +146,281 @@ $blue: #3468fc;
 .tg .tg-0lax {
   vertical-align: top;
   font-size: 16px;
+}
+
+.flight-infos {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 30%;
+  height: 50%;
+  justify-content: center;
+  align-content: center;
+  margin: 4% 4%;
+  font-family: $body-font;
+  > p {
+    background-color: #303030;
+    &:first-of-type {
+      color: #e6b223;
+      padding: 10px 0 0 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    &:nth-of-type(2) {
+      color: white;
+      padding: 0 0 10px 20px;
+    }
+  }
+  .airport {
+    display: flex;
+    position: relative;
+    .departure {
+      border-right: 5px solid white;
+    }
+    .departure,
+    .arrival {
+      display: flex;
+      flex-direction: column;
+      background-color: #ededed;
+      flex: 1;
+      text-align: center;
+      padding: 30px 0;
+      p {
+        &:first-of-type {
+          font-size: 40px;
+        }
+        &:last-of-type {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  .time {
+    display: flex;
+    background: #dcdcdc;
+    justify-content: space-between;
+    border-top: 4px solid white;
+    border-bottom: 4px solid white;
+    p {
+      display: flex;
+      width: 300%;
+      padding: 5px 5px;
+      justify-content: space-between;
+      align-items: center;
+      &:first-of-type {
+        border-right: 5px solid white;
+      }
+      strong {
+        letter-spacing: 1px;
+        font-size: 15px;
+        align-self: center;
+      }
+    }
+  }
+  > p {
+    &:last-of-type {
+      padding: 5px 5px;
+      color: white;
+      text-align: end;
+    }
+  }
+}
+
+#new_booking {
+  flex: 1;
+  display: flex;
+  .passenger {
+    display: flex;
+    flex-direction: column;
+    padding: 4% 0;
+    gap: 10px;
+    width: 400px;
+    align-self: center;
+    .passenger-infos {
+      display: flex;
+      flex-direction: row;
+      height: 170px;
+      border: 1px solid white;
+      font-family: $body-font;
+      background-color: black;
+      border-radius: 10px;
+      box-shadow: 1px 1px 1px #dcdcdc;
+      color: white;
+      .info {
+        padding: 20px 20px;
+        letter-spacing: 2px;
+      }
+      .label {
+        border-right: 1px dashed white;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
+        font-family: $logo-font;
+      }
+      input {
+        width: 90%;
+      }
+    }
+  }
+  .submit {
+    width: 120px;
+    height: 30px;
+    position: relative;
+    background-color: #303030;
+    border-radius: 10px;
+    align-self: center;
+    margin-left: 20px;
+    color: white;
+    box-shadow: 1px 2px 2px black;
+    display: flex;
+    &:hover {
+      background-color: orange;
+    }
+    button {
+      border: none;
+      flex: 1;
+      letter-spacing: 1px;
+      cursor: pointer;
+      height: 100%;
+      color: white;
+      background: none;
+      margin-left: 25px;
+    }
+  }
+}
+.absolute {
+  position: absolute;
+}
+
+.c-button {
+  top: 5px;
+  left: 10px;
+}
+
+.center {
+  top: calc(50% - 20px);
+  right: calc(50% - 20px);
+}
+
+.rounded-icon {
+  border-radius: 50%;
+  background: white;
+  font-size: 40px;
+  transform: rotate(90deg);
+}
+.container {
+  display: flex;
+}
+
+.ticket {
+  display: grid;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 800px;
+  color: white;
+  grid-template-areas:
+    "left top top top"
+    "left middle middle middle"
+    "left middle middle middle"
+    "left middle middle middle";
+  grid-template-columns: 80px 1fr 1fr 1fr;
+}
+
+.ticket-left {
+  display: flex;
+  background: $blue;
+  flex-direction: column;
+  grid-area: left;
+
+  border-start-start-radius: 20px;
+  border-end-start-radius: 20px;
+  > span {
+    font-size: 60px;
+    display: flex;
+    margin: 0 auto;
+  }
+  img {
+    width: 150px;
+    border-radius: 10px;
+    transform: rotate(270deg) translateX(-50%);
+    align-self: center;
+  }
+}
+.ticket-top {
+  grid-area: top;
+  display: flex;
+  flex-direction: column;
+  > p {
+    &:nth-of-type(1) {
+      background: $blue;
+      border-start-end-radius: 30px;
+      border-end-end-radius: 30px;
+      width: 200px;
+    }
+    &:nth-of-type(2) {
+      background: $blue;
+    }
+  }
+}
+.ticket-middle {
+  background: #919291;
+  grid-area: middle;
+  height: 200px;
+  border-end-end-radius: 20px;
+  display: flex;
+  .ticket-middle__left {
+    padding: 10px 10px;
+    width: 70%;
+    font-size: 12px;
+    .first-line {
+      display: flex;
+      gap: 50px;
+      .name,
+      .flight {
+        > p {
+          &:nth-of-type(2) {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .second-line {
+      padding: 10px 10px;
+      font-size: 35px;
+      display: flex;
+      gap: 20px;
+      img {
+        width: 100px;
+      }
+    }
+    .third-line {
+      display: flex;
+      gap: 50px;
+      padding: 10px 10px;
+    }
+  }
+  .ticket-middle__right {
+    border-left: 1px dashed black;
+    width: 30%;
+    display: flex;
+    gap: 5px;
+    padding: 10px 10px;
+    flex-direction: column;
+    .first-line {
+      font-size: 12px;
+    }
+    .second-line {
+      font-size: 12px;
+      p {
+        display: flex;
+      span {
+        text-align: end;
+        flex:1;
+        padding-right: 20px;
+        word-break: break-all;  
+        overflow-wrap: break-word; 
+      }
+    }
+    }
+  }
 }

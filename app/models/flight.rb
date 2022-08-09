@@ -14,14 +14,18 @@ class Flight < ApplicationRecord
     hours = time/60
     minutes = time - hours * 60
     if hours > 0 && minutes > 0 
-      formatted_duration = hours.to_s + " horas e " + minutes.to_s + " minutos " 
+      formatted_duration = hours.to_s + " hours and " + minutes.to_s + " minutes " 
     elsif hours > 0 && minutes <= 0
-      formatted_duration = hours.to_s + " horas"
+      formatted_duration = hours.to_s + " hours"
     elsif hours <= 0 && minutes >= 0
-      formatted_duration = minutes.to_s + " minutos"
+      formatted_duration = minutes.to_s + " minutes"
     else
       formatted_duration = "duracao desconhecida."
     end
+  end
+
+  def self.flight_hour_formatted(date)
+    date.strftime('%H:%M')
   end
 
   def self.search(departure_code, arrival_code, date)
@@ -30,7 +34,7 @@ class Flight < ApplicationRecord
       arrival_id = Airport.find_by(code: arrival_code)
       formated_date = date.to_datetime
       flights = Flight.where('departure_airport_id = ?', departure_id).where('arrival_airport_id = ?', arrival_id).where(
-        'start_datetime >= ?', formated_date
+        'start_datetime = ?', formated_date
       )
     end
   end

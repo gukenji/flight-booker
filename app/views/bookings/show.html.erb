@@ -1,0 +1,61 @@
+<% @booking.passengers.each do |p| %>
+  <div class="ticket">
+    <div class="ticket-left">
+      <span class="material-symbols-outlined">flight</span>
+      <%= image_tag("barcode.jpg")%>
+    </div>
+    <div class="ticket-top">
+      <p>Boarding Pass</p>
+      <p>Economy</p>
+    </div>
+    <div class="ticket-middle">
+      <div class="ticket-middle__left">
+        <div class="first-line">
+          <div class="name">
+            <p>PASSENGER NAME</p>
+            <p><%= p.name %></p>
+          </div>
+          <div class="flight">
+            <p>FLIGHT</p>
+            <p><%= @code%></p>
+          </div>
+        </div>
+        <div class="second-line">
+          <p><%= Airport.find(@flight.departure_airport_id).code %></p>
+          <%= image_tag("flight-icon.png") %>
+          <p><%= Airport.find(@flight.arrival_airport_id).code %></p>
+        </div>
+        <div class="third-line">
+          <div class="date">
+            <p>DATE</p>
+            <p><%= @flight.start_datetime %></p>
+          </div>
+          <div class="time">
+            <p>DURATION</p>
+            <p><%= Flight.flight_duration_formatted(@flight.flight_duration) %></p>
+          </div>
+          <div class="est-arrival">
+            <p>EST. ARRIVAL</p>
+            <% est = @flight.start_datetime + (@flight.flight_duration * 60 )%>
+            <p><%= est %></p>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-middle__right">
+        <div class="first-line">
+          <p>PASSENGER NAME</p>
+          <p><%= p.name %></p>
+        </div>
+        <div class="second-line">
+          <p>FROM <span><%= Airport.find(@flight.departure_airport_id).city %></span></p>
+          <p>TO <span><%= Airport.find(@flight.arrival_airport_id).city %></span></p>
+          <p>FLIGHT <span><%= @code%></span></p>
+          <p>DATE <span><%= Flight.flight_date_formatted(@flight.start_datetime) %></span><br>
+          <p>HOUR <span><%= Flight.flight_hour_formatted(@flight.start_datetime) %></span><br>
+          <p>EST. TIME <span><%= Flight.flight_duration_formatted(@flight.flight_duration) %></span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%end %>

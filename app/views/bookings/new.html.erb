@@ -1,20 +1,50 @@
 <% flight = Flight.find(@flight_id) %>
-<p>Informações do voo</p>
-<p>Partida: <%=Airport.find(flight.departure_airport_id).city %></p>
-<p>Destino: <%=Airport.find(flight.arrival_airport_id).city %></p>
-<p>Data/Horario: <%= Flight.flight_date_formatted(flight.start_datetime) %></p>
-<p>Duração do Voo: <%= Flight.flight_duration_formatted(flight.flight_duration) %></p>
 
-
-<%= form_for @booking do |b| %>
-    <%= b.hidden_field :flight_id, value: flight.id %>
-    <%= b.fields_for :passengers do |f| %>
-    <%= f.hidden_field :id, value: nil%>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-  <%end %>
-  <%= b.submit %>
-<% end %>
-
+<div class="container">
+  <div class="flight-infos">
+    <p><%= @code %></p>
+    <p>Odin Airlines</p>
+    <div class="airport">
+      <span class="material-symbols-outlined absolute center rounded-icon">flight</span>
+      <div class="departure">
+        <p><strong><%= Airport.find(flight.departure_airport_id).code %></strong></p>
+        <p><strong><%=Airport.find(flight.departure_airport_id).city %></strong></p>
+      </div>
+      <div class="arrival">
+        <p><strong><%= Airport.find(flight.arrival_airport_id).code %></strong></p>
+        <p><strong><%=Airport.find(flight.arrival_airport_id).city %></strong></p>
+      </div>
+    </div>
+    <div class="time">
+      <p><strong>HORÁRIO </strong><%= Flight.flight_hour_formatted(flight.start_datetime) %></p>
+      <p><strong>T. ESTIMADO </strong><%= Flight.flight_duration_formatted(flight.flight_duration) %></p>
+    </div>
+    <p><strong>Data: </strong><%= Flight.flight_date_formatted(flight.start_datetime) %></p>
+  </div>
+  <%= form_for @booking do |b| %>
+    <%= b.hidden_field :flight_id, value: @flight_id %>
+    <%= b.hidden_field :code, :value => @code %>
+    <div class="passenger">
+      <%= b.fields_for :passengers do |f| %>
+        <div class="passenger-infos">
+          <div class="info">
+            <%= f.hidden_field :id, value: nil%>
+            <%= f.label "Nome" %>
+            <%= f.text_field :name , :required => true %>
+            <%= f.label "E-mail" %>
+            <%= f.text_field :email, :required => true%>
+          </div>
+          <div class="label">
+            <%= "#{f.index+1}o ticket"%>
+          </div>
+        </div>
+      <%end %>
+    </div>
+    <div class="submit">
+      <span class="material-symbols-outlined absolute c-button">
+        book_online
+      </span><%= b.button "RESERVAR", name: "code", value: @code, type: 'submit' %>
+    </div>
+  <% end %>
+  
+</div>

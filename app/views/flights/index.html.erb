@@ -35,7 +35,6 @@
             <td class="tg-0lax">
               <%= form_with url: new_booking_path, method: :get do |booking_form| %>
                 <%= booking_form.hidden_field :flight_id, value: f.id%>
-                <%= booking_form.hidden_field :passenger_id, value: 1%>
                 <%= booking_form.hidden_field :num_ticket, value: params[:num_ticket]%>
                 <%= submit_tag("Selecionar")%>
               <% end %>

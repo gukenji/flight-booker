@@ -14,6 +14,10 @@ class BookingsController < ApplicationController
     @code = params[:code]
     respond_to do |format|
       if @booking.save!
+        @passengers = @booking.passengers
+        @passengers.each do |passenger| 
+          PassengerMailer.book_confirmation_email(passenger, @booking).deliver_now!
+        end
         format.html { redirect_to booking_path(id: @booking.id, code: @code), notice: 'Reserva efetuada com sucesso!' }
         format.json { render :show, status: :created, location: @booking }
       else

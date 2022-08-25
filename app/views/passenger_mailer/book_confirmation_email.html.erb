@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Olá <%= @passenger.name %>!</h1>
+    <p>Sua reserva foi efetuada com sucesso.</p>
+    <p>Seguem algumas informações a respeito da sua viagem:</p>
+    <p><strong>Data: </strong><%= @booking.flight.start_datetime %></p>
+    <p><strong>Local de Partida: </strong><%= Airport.find(@booking.flight.departure_airport_id).city %></p>
+    <p><strong>Local de Destino: </strong><%= Airport.find(@booking.flight.arrival_airport_id).city %></p>
+    <p>Nós desejamos a você uma boa viagem!</p>
+  </body>
+</html>

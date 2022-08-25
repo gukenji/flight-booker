@@ -1,0 +1,8 @@
+    Olá <%= @passenger.name %>!
+
+    Sua reserva foi efetuada com sucesso.
+    Seguem algumas informações a respeito da sua viagem:
+    Data: <%= @booking.flight.start_datetime %>
+    Local de Partida: <%= Airport.find(@booking.flight.departure_airport_id).city %>
+    Local de Destino: <%= Airport.find(@booking.flight.arrival_airport_id).city %>
+    Nós desejamos a você uma boa viagem!
